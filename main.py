@@ -2,6 +2,72 @@ from src.ai_interface import AIInterface
 from src.dice import DiceRoller
 from src.character import Character
 from src.game_state import GameState
+from src.combat import CombatSystem
+from src.game_loop import GameLoop
+
+def test_game_loop():
+    """Test the main game loop"""
+    print("Testing the game loop...")
+    print("This will start the actual D&D game!")
+    print("Type 'quit' during character creation to exit the test")
+
+    try:
+        game = GameLoop()
+        game.start_new_game()
+    except KeyboardInterrupt:
+        print("\nGame loop test interupted by user")
+    except Exception as e: 
+        print(f"Game loop test error: {e}")
+
+def test_combat_system():
+    """Test the combat system"""
+    print("Testing the combat system...")
+
+    # Create a test character
+    hero = Character("Test Fighter")
+    hero.alignment = "Lawful Good"
+    hero.character_class = "Fighter"
+    hero.background = "Soldier"
+    hero.roll_abilities()
+    hero.set_race("Human") 
+    hero.calculate_hp()
+    hero.add_skill_proficiency('athletics')
+
+    # Create a simple enemy (as a dictionary)
+    goblin = {
+        'name': 'Goblin',
+        'armor_class': 15,
+        'hit_points': 7,
+        'dex_modifier': 2
+    }
+
+    combat = CombatSystem()
+
+    # Test initiative
+
+    characters = [
+        {'name': hero.name, 'dex_modifier': hero.get_ability_modifier('dexterity')},
+        goblin
+    ]
+
+    print("rolling initiative...")
+    initiative_order = combat.roll_initiative(characters)
+
+    for character in initiative_order:
+        print(f"{character['name']}: {character['initiative']}")
+
+    # Test attack roll
+    print(f"\n{hero.name} attacks the Goblin!")
+    attack_result = combat.make_attack_roll(hero, goblin)
+    
+    print(f"Attack roll: {attack_result['attack_roll']} + {attack_result['ability_modifier']} + {attack_result['proficiency_bonus']} = {attack_result['total']}")
+    print(f"Target AC: {attack_result['target_ac']}")
+    print(f"Hit: {'Yes' if attack_result['hit'] else 'No'}")
+    
+    if attack_result['hit']:
+        # Test damage roll
+        damage_result = combat.roll_damage("1d8", hero.get_ability_modifier('strength'))
+        print(f"Damage: {damage_result['damage_roll']} + {damage_result['ability_modifier']} = {damage_result['total_damage']}")
 
 def test_game_state():
     """Test game state save/load functionality"""
@@ -106,10 +172,19 @@ def test_ai_connection():
     print(f"AI Response: {response}")
 
 if __name__ == "__main__":
+    # Test individual systems first
+    test_combat_system()
+    print("\n" + "="*50 + "\n")
+
     test_game_state()
     print("\n" + "="*50 + "\n")
-    test_character_creation()
-    print("\n" + "="*50 + "\n")
-    test_dice_system()
-    print()
+    
     test_ai_connection()
+    print("\n" + "="*50 + "\n")
+
+    # Ask user if they want to test the full game
+    test_full_game = input("Do you want to test the full game loop? (y/n): ").lower()
+    if test_full_game == 'y':
+        test_game_loop()
+    else: 
+        print("Skipping full game test")
