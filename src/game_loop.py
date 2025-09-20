@@ -43,10 +43,33 @@ class GameLoop:
             if race not in races:
                 print(f"Invalid race '{race}'. Please choose from: {', '.join(races)}")
 
-        # Classes and background
+        # Classes selection
         character.character_class = input("Enter your class: ")
+        classes = ['fighter', 'wizard', 'rogue', 'cleric', 'ranger', 'barbarian', 'bard', 'druid', 'monk', 'paladin', 'sorcerer', 'warlock']
+        print(f"Avaliable classes: {', '.join(classes)}")
+
+        character_class = None
+        while character_class not in classes:
+            character_class = input("Choose your class: ").lower()
+            if character_class not in classes:
+                print(f"Invalid class '{character_class}'. Please choose from: {', '.join(classes)}")
+
+        character.character_class = character_class.capitalize()
+        
+        # Character background input
         character.background = input("Enter your background: ")
-        character.alignment = input("Enter your alignment: ")
+        
+        # Alignment selection
+        alignments = ['lawful good', 'neutral good', 'chaotic good', 'lawful neutral', 'true neutral', 'chaotic neutral', 'lawful evil', 'neutral evil', 'chaotic evil']
+        print(f"Avaliable alignments: {', '.join(alignments)}")
+
+        alignment = None
+        while alignment not in alignments:
+            alignment = input("Choose your alignment: ").lower()
+            if alignment not in alignments:
+                print(f"Invalid alignment '{alignment}'. Please choose from: {', '}.join(alignments)")
+
+        character.alignment = alignment.title()
 
         # Roll abilities and apply racial bonuses
         character.roll_abilities()
