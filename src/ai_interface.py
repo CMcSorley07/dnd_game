@@ -3,39 +3,48 @@ import json
 import time
 
 class AIInterface:
-    def __init__(self, model_name="llama3:8b"):
+    def __init__(self, model_name="pplx-70b-online", base_url="https://api.perplexity.ai"):
         self.model_name = model_name
-        self.base_url = "http://localhost:11434"
+        self.base_url = base_url
+        self.api_key = os.environ.get("PERPLEXITY_API_KEY")
+        if not self.api_key:
+            raise RuntimeError("Missing PERPLEXITY_API_KEY environment")
+    
+    def send_message(self, message, system="You are a creative D&D Dungeon Master. Keep responses concise and actionable."):
+        url = f"{self.base_url}/chat/completions"
 
-    def send_message(self, message):
-        """Send a message to Ollama and get response"""
-
-        url = f"{self.base_url}/api/generate"
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
         
         payload = {
             "model": self.model_name,
-            "prompt": message,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": message}
+            ],
+            'temperature': 0.8,
+            'max_tokens': 512,
             "stream": False
         }
 
+        backoff = 1.0
         for attempt in range(3): 
             try:
-                response = requests.post(url, json=payload)
-                # print(f"Response Status Code: {response.status_code}") # Debug
-                response.raise_for_status()
-
-                result = response.json()
-
-                # Check if model is still loading
-                if result.get("done_reason") == "load":
-                    # print(f"Model is still loading... (attempt {attempt + 1})") # Debug
-                    time.sleep(2) # Wait before retrying
-                    continue
-
-                # print(f"full JSON response: {result}") # Debug 
-                return result["response"]
-            
+                resp = requests.post(url, headers=headers, json=payload, timeout=60)
+                if resp.status_code == 429:
+                    time.sleep(backoff)
+                    backoff *= 2
+                    continue 
+                resp.raise_for_status()
+                result = resp.json()
+                # Perplexity response format: choices[0].message.content
+                return data.get("choices", [{}])[0].get("message", {}).get("content", "")
             except requests.RequestException as e:
-                return f"Error communicating with Ollama: {e}"
-            
+                if attempt == 2:
+                    return f"Error communicating with Perplexity: {e}"
+                time.sleep(backoff)
+                backoff *= 2
+
         return "Failed to get response after multiple attempts."
