@@ -43,8 +43,10 @@ class GameLoop:
             if race not in races:
                 print(f"Invalid race '{race}'. Please choose from: {', '.join(races)}")
 
+
+
         # Classes selection
-        character.character_class = input("Enter your class: ")
+        # character.character_class = input("Enter your class: ")
         classes = ['fighter', 'wizard', 'rogue', 'cleric', 'ranger', 'barbarian', 'bard', 'druid', 'monk', 'paladin', 'sorcerer', 'warlock']
         print(f"Avaliable classes: {', '.join(classes)}")
 

@@ -1,0 +1,59 @@
+{
+  "session_id": "session_20251008_105050",
+  "player": {
+    "name": "CharacterName",
+    "level": 1,
+    "race": "elf",
+    "character_class": "Fighter",
+    "background": "background",
+    "alignment": "Lawful Good",
+    "abilities": {
+      "strength": 11,
+      "dexterity": 11,
+      "constitution": 16,
+      "intelligence": 14,
+      "wisdom": 11,
+      "charisma": 17
+    },
+    "hit_points": 11,
+    "max_hit_points": 11,
+    "armor_class": 10,
+    "proficiency_bonus": 2,
+    "speed": 30,
+    "skill_proficiencies": [
+      "perception"
+    ],
+    "saving_throw_proficiencies": [],
+    "inventory": [],
+    "equipment": {
+      "armor": null,
+      "weapons": [],
+      "shield": null
+    },
+    "gold": 0,
+    "silver": 0,
+    "copper": 0,
+    "experience_points": 0
+  },
+  "current_location": "Starting Village",
+  "world_state": {},
+  "history": [
+    {
+      "timestamp": "2025-10-08T10:50:50.389065",
+      "type": "game_start",
+      "description": "New adventure begins with CharacterName"
+    },
+    {
+      "timestamp": "2025-10-08T10:51:02.731852",
+      "type": "action",
+      "description": "Player: testing"
+    },
+    {
+      "timestamp": "2025-10-08T10:51:07.618669",
+      "type": "dm_response",
+      "description": "Error communicating with Perplexity: 400 Client Error: Bad Request for url: https://api.perplexity.ai/chat/completions"
+    }
+  ],
+  "quests": [],
+  "last_saved": "2025-10-08T10:51:12.022484"
+}

@@ -24,15 +24,13 @@ class AIInterface:
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": message}
-            ],
-            'temperature': 0.8,
-            'max_tokens': 512,
-            "stream": False
+            ]
         }
 
         backoff = 1.0
         for attempt in range(3): 
             try:
+                print("Payload:", json.dumps(payload, indent=2)) # Debugging line to print the payload
                 resp = requests.post(url, headers=headers, json=payload, timeout=60)
                 if resp.status_code == 429:
                     time.sleep(backoff)
