@@ -17,21 +17,26 @@ class AIInterface:
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
+            "Accept": "application/json",
         }
         
         payload = {
-            "model": self.model_name,
+            "model": "sonar-reasoning-pro",
             "messages": [
                 {"role": "system", "content": system},
-                {"role": "user", "content": message}
-            ]
+                {"role": "user", "content": message},
+            ],
+            "max_tokens": 256,
         }
 
         backoff = 1.0
         for attempt in range(3): 
             try:
                 print("Payload:", json.dumps(payload, indent=2)) # Debugging line to print the payload
+                
                 resp = requests.post(url, headers=headers, json=payload, timeout=60)
+                print(f"Status code: {resp.status_code}")
+                print(f"Response text: {resp.text}")
                 if resp.status_code == 429:
                     time.sleep(backoff)
                     backoff *= 2
