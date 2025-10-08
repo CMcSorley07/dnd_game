@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import os
 
 class AIInterface:
     def __init__(self, model_name="pplx-70b-online", base_url="https://api.perplexity.ai"):
@@ -40,7 +41,7 @@ class AIInterface:
                 resp.raise_for_status()
                 result = resp.json()
                 # Perplexity response format: choices[0].message.content
-                return data.get("choices", [{}])[0].get("message", {}).get("content", "")
+                return result.get("choices", [{}])[0].get("message", {}).get("content", "")
             except requests.RequestException as e:
                 if attempt == 2:
                     return f"Error communicating with Perplexity: {e}"

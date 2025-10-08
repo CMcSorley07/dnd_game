@@ -4,13 +4,14 @@ import time
 
 # If switching back to ollama ai, rename this file as 'ai_interface.py'
 
+"""
 class AIInterface:
     def __init__(self, model_name="llama3:8b"):
         self.model_name = model_name
         self.base_url = "http://localhost:11434"
 
     def send_message(self, message):
-        """Send a message to Ollama and get response"""
+        # Send a message to Ollama and get response
 
         url = f"{self.base_url}/api/generate"
         
@@ -41,3 +42,4 @@ class AIInterface:
                 return f"Error communicating with Ollama: {e}"
             
         return "Failed to get response after multiple attempts."
+"""
