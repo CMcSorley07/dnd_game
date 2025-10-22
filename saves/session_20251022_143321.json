@@ -1,0 +1,59 @@
+{
+  "session_id": "session_20251022_143321",
+  "player": {
+    "name": "Test Hero",
+    "level": 1,
+    "race": "Human",
+    "character_class": "Fighter",
+    "background": "Soldier",
+    "alignment": "Lawful_Good",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 8,
+      "constitution": 15,
+      "intelligence": 12,
+      "wisdom": 15,
+      "charisma": 14
+    },
+    "hit_points": 10,
+    "max_hit_points": 10,
+    "armor_class": 9,
+    "proficiency_bonus": 2,
+    "speed": 30,
+    "skill_proficiencies": [
+      "athletics"
+    ],
+    "saving_throw_proficiencies": [],
+    "inventory": [],
+    "equipment": {
+      "armor": null,
+      "weapons": [],
+      "shield": null
+    },
+    "gold": 150,
+    "silver": 0,
+    "copper": 0,
+    "experience_points": 0
+  },
+  "current_location": "Mysterious Cave",
+  "world_state": {},
+  "history": [
+    {
+      "timestamp": "2025-10-22T14:33:21.405770",
+      "type": "game_start",
+      "description": "New adventure begins with Test Hero"
+    },
+    {
+      "timestamp": "2025-10-22T14:33:21.405787",
+      "type": "exploration",
+      "description": "Entered the dark forest"
+    },
+    {
+      "timestamp": "2025-10-22T14:33:21.405791",
+      "type": "combat",
+      "description": "Fought a goblin"
+    }
+  ],
+  "quests": [],
+  "last_saved": "2025-10-22T14:33:21.406248"
+}
