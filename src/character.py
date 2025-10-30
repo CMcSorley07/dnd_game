@@ -59,11 +59,7 @@ class Character:
         
         # Equipment and inventory
         self.inventory = []
-        self.equipment = {
-            'armor': None,
-            'weapons': [],
-            'shield': None
-        }
+        self.equipment = {'armor': None, 'weapons': [], 'shield': None}
         
         # Currency
         self.gold = 0
@@ -75,6 +71,51 @@ class Character:
         
         # Initialize dice roller for character creation
         self.dice = DiceRoller()
+
+    # Inventory management methods
+    def add_to_inventory(self, item): # add item to inventory
+        self.inventory.append(item)
+
+    def remove_from_inventory(self, item): # remove item from inventory
+        if item in self.inventory:
+            self.inventory.remove(item)
+
+    def equip_item(self, item, slot):
+        """
+        Equip an item to the specified slot.
+        slot must be one of "weapons" (list, "armor" (single), or "shield" (single).
+        """
+        if item not in self.inventory:
+            print(f"{item} is not in inventory!")
+            return False
+
+        if slot == "weapons":
+            self.equipment["weapons"].append(item)
+            return True
+        elif slot in ["armor", "shield"]:
+            self.equipment[slot] = item
+            return True
+        else:
+            print(f"Invalid equipment slot: {slot}")
+            return False
+
+    def unequip_item(self, item, slot):
+        """
+        Unequip an item from the specified slot.
+        """
+        if slot == "weapons":
+            if slot == "weapons":
+                if item in self.equipment["weapons"]:
+                    self.equipment["weapons"].remove(item)
+                    return True
+            elif slot in ["armor", "shield"]:
+                if self.equipment[slot] == item:
+                    self.equipment[slot] = None
+                    return True
+            print(f"{item} is not equiped in {slot}.")
+            return False
+
+    
     
     def get_racial_bonuses(self):
         """Get ability score increases and traits based on race"""
@@ -219,14 +260,26 @@ class Character:
         self.update_derived_stats()
     
     def calculate_hp(self):
-        """Calculate hit points based on class and constitution"""
+        class_hit_dice = {
+            "barbarian": 12,
+            "fighter": 10,
+            "paladin": 10,
+            "ranger": 10,
+            "bard": 8,
+            "cleric": 8,
+            "druid": 8, 
+            "monk": 8, 
+            "rogue": 8,
+            "warlock": 8,
+            "wizard": 8:
+            "sorcerer": 6,
+            # add homebrea/classes as needed
+        }
         con_mod = self.get_ability_modifier('constitution')
-        
-        # Base HP (will vary by class later)
-        base_hp = 8  # Average for most classes
-        
-        self.max_hit_points = base_hp + con_mod
-        self.hit_points = self.max_hit_points
+        hd = class_hit_dice.get(self.characterclass.lower(), 8) # hit dice
+        base_hp = hd # Level 1: max value of hit die
+        self.max_hitpoints = base_hp + con_mod
+        self.hitpoints = self.max_hitpoints
         
         print(f"Hit Points: {self.hit_points}/{self.max_hit_points}")
     

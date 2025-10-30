@@ -1,6 +1,6 @@
 # D&D AI Game
 
-Single-player Dungeons & Dragons game with AI dungeon master using Ollama
+Single-player Dungeons & Dragons game with AI dungeon master using Ollama3 (currently testing with Perplexity AI)
 
 ## Setup
 1. Install Ollama and pull llama3
