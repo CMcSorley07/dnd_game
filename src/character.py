@@ -271,9 +271,9 @@ class Character:
             "monk": 8, 
             "rogue": 8,
             "warlock": 8,
-            "wizard": 8:
+            "wizard": 8,
             "sorcerer": 6,
-            # add homebrea/classes as needed
+            # add homebrew/classes as needed
         }
         con_mod = self.get_ability_modifier('constitution')
         hd = class_hit_dice.get(self.characterclass.lower(), 8) # hit dice
