@@ -114,8 +114,6 @@ class Character:
                     return True
             print(f"{item} is not equiped in {slot}.")
             return False
-
-    
     
     def get_racial_bonuses(self):
         """Get ability score increases and traits based on race"""
