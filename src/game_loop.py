@@ -1,7 +1,7 @@
 from .ai_interface import AIInterface
 from .character import Character
 from .dice import DiceRoller
-from .game_state import GameState
+from .game_state import game_state
 from .combat import CombatSystem
 
 class GameLoop:
@@ -9,7 +9,7 @@ class GameLoop:
         self.ai = AIInterface()
         self.dice = DiceRoller()
         self.combat = CombatSystem()
-        self.game_state = GameState()
+        self.game_state = game_state()
         self.running = False
 
     """----------------"""
@@ -184,6 +184,7 @@ class GameLoop:
             
             elif choice == '1':
                 print("\n--- Full Game State ---")
+                print(vars(self.game_state))
             
             elif choice == '2':
                 print("\n--- Character Details ---")
@@ -191,7 +192,7 @@ class GameLoop:
 
             elif choice == '3':
                 print("\n--- Recent History ---")
-                history = self.game_state.get_recent_history(12)
+                history = self.game_state.get_recent_history[-12:]
                 for entry in history:
                     print(entry)
             
@@ -203,8 +204,7 @@ class GameLoop:
             elif choice == '5':
                 test_prompt = input("Enter test prompt for AI: ")
                 response = self.ai.send_message(test_prompt)
-                print("\nAI Response:")
-                print(response)
+                print("\nAI Response:", response)
             
             elif choice == '6':
                 dice_input = input("Enter dice to roll (e.g., '1d20', '2d6+3'): ")
@@ -228,7 +228,7 @@ class GameLoop:
                     self.game_state.load_game(filename)
                     print(f"Game loaded from {filename}.")
                 except Exception as e:
-                    print(f"Error loading game: {e}")
+                    print(f"Error loading game:", e)
             
             elif choice == '10':
                 print("\n--- Edit Player Stats/Inventory ---")

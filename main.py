@@ -172,19 +172,5 @@ def test_ai_connection():
     print(f"AI Response: {response}")
 
 if __name__ == "__main__":
-    # Test individual systems first
-    test_combat_system()
-    print("\n" + "="*50 + "\n")
-
-    test_game_state()
-    print("\n" + "="*50 + "\n")
-    
-    test_ai_connection()
-    print("\n" + "="*50 + "\n")
-
-    # Ask user if they want to test the full game
-    test_full_game = input("Do you want to test the full game loop? (y/n): ").lower()
-    if test_full_game == 'y':
-        test_game_loop()
-    else: 
-        print("Skipping full game test")
+    game = GameLoop()
+    game.start_new_game()

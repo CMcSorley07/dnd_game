@@ -151,3 +151,18 @@ class GameState:
         character.update_derived_stats()
 
         return character
+    
+    def list_save_files(self):
+        """List all available save files in saves directory"""
+        save_dir = "saves"
+        if not os.path.exists(save_dir):
+            print("No saves directory found.")
+            return []
+        files = [f for f in os.listdir(save_dir) if f.endswith(".json")]
+        if not files:
+            print("No save files found.")
+        else:
+            print("\n--- Avaliable Save Files ---")
+            for f in files:
+                print(f)
+        return files

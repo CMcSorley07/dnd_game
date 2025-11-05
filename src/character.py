@@ -274,7 +274,7 @@ class Character:
             # add homebrew/classes as needed
         }
         con_mod = self.get_ability_modifier('constitution')
-        hd = class_hit_dice.get(self.characterclass.lower(), 8) # hit dice
+        hd = class_hit_dice.get(self.character_class.lower(), 8) # hit dice
         base_hp = hd # Level 1: max value of hit die
         self.max_hitpoints = base_hp + con_mod
         self.hitpoints = self.max_hitpoints

@@ -1,0 +1,49 @@
+{
+  "session_id": "session_20251105_124633",
+  "player": {
+    "name": "name",
+    "level": 1,
+    "race": "elf",
+    "character_class": "Fighter",
+    "background": "background",
+    "alignment": "Chaotic Evil",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 6,
+      "constitution": 15,
+      "intelligence": 11,
+      "wisdom": 11,
+      "charisma": 16
+    },
+    "hit_points": 0,
+    "max_hit_points": 0,
+    "armor_class": 8,
+    "proficiency_bonus": 2,
+    "speed": 30,
+    "skill_proficiencies": [
+      "perception"
+    ],
+    "saving_throw_proficiencies": [],
+    "inventory": [],
+    "equipment": {
+      "armor": null,
+      "weapons": [],
+      "shield": null
+    },
+    "gold": 0,
+    "silver": 0,
+    "copper": 0,
+    "experience_points": 0
+  },
+  "current_location": "Starting Village",
+  "world_state": {},
+  "history": [
+    {
+      "timestamp": "2025-11-05T12:46:33.678691",
+      "type": "game_start",
+      "description": "New adventure begins with name"
+    }
+  ],
+  "quests": [],
+  "last_saved": "2025-11-05T12:47:00.710301"
+}
