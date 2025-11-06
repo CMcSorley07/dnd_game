@@ -1,4 +1,5 @@
-from src.ai_interface import AIInterface
+# from src.ai_interface import AIInterface # Uncommet when using Perplexity AI
+from src.gpt_interface import AIInterface # Delete when using Perplexity AI
 from src.dice import DiceRoller
 from src.character import Character
 from src.game_state import GameState

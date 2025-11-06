@@ -1,15 +1,17 @@
-from .ai_interface import AIInterface
+# from .ai_interface import AIInterface # Uncommet when using Perplexity AI
+from .gpt_interface import AIInterface # Delete when using Perplexity AI
 from .character import Character
 from .dice import DiceRoller
-from .game_state import game_state
+from .game_state import GameState
 from .combat import CombatSystem
 
 class GameLoop:
     def __init__(self):
         self.ai = AIInterface()
+        self.character = Character()
         self.dice = DiceRoller()
+        self.game_state = GameState()
         self.combat = CombatSystem()
-        self.game_state = game_state()
         self.running = False
 
     """----------------"""
