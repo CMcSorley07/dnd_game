@@ -1,4 +1,18 @@
-# from src.ai_interface import AIInterface # Uncommet when using Perplexity AI
+"""AI Models Import Section"""
+
+"""Perplexity"""
+# from src.ai_interface import AIInterface 
+
+"""ChatGPT"""
+# from src.gpt_interface import AIInterface 
+
+"""Ollama Basic gemma2:2b"""
+from src.starter_ai import AIInterface
+
+"""Ollama Advanced llama3.2:3b"""
+# from src.advanced_ai import AIInterface
+
+"""Import Other Game Modules"""
 from src.gpt_interface import AIInterface # Delete when using Perplexity AI
 from src.dice import DiceRoller
 from src.character import Character
